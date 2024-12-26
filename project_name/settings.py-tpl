@@ -35,7 +35,7 @@ ALLOWED_HOST = config('DJANGO_ALLOWED_HOSTS', cast=str, default='')
 if ALLOWED_HOST:
     ALLOWED_HOSTS.append(ALLOWED_HOST.strip())
 
-# AUTH_USER_MODEL = 'account.Account'
+AUTH_USER_MODEL = 'account.Account'
 
 # Application definition
 
@@ -49,7 +49,7 @@ INSTALLED_APPS = [
 
     # Project applications
     'core.misc', 
-    # 'core.apps.account',
+    'core.apps.account',
 
     # Third party applications
     'django_htmx',
