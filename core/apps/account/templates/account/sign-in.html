@@ -1,0 +1,36 @@
+{% extends "stacked.html" %}
+{% load static %}
+
+{% block title %}
+    Sign-in
+{% endblock title %}
+
+{% block content %}
+{% if not request.user.is_authenticated %}
+<div class="row justify-content-center align-items-center vh-100">
+    <div class="col-lg-4">
+        <div class="p-5">
+            <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4">Welcome back!</h1>
+            </div>
+            {% include 'account/htmx-partials/sign-in-form.html' %}
+            <hr>
+            <div class="text-center">
+                <a class="small" href="{% url 'password_reset' %}">Forgot Password?</a>
+            </div>
+            <div class="text-center">
+                <a class="small" href="{% url 'sign-up' %}">Don't have an account? Sign-up!</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% else %}
+<script type="text/javascript">
+    location = "{% url 'dashboard' %}"
+</script>
+{% endif %}
+
+
+{% endblock %}

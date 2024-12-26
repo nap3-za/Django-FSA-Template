@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Password change
+{% endblock title %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-5">
+        <div class="p-5">
+            <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4">Password change done!</h1>
+                <p class="text-gray-500 mb-0">Your password was changed successfully, be sure to save the new password so that you don't forget it
+                    <br>
+                <a href="{% url 'dashboard' %}">&larr; Proceed to the dashboard</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+  setTimeout(function (){
+      location = "{% url 'dashboard' %}"
+  }, 10000)
+</script>
+{% endblock %}

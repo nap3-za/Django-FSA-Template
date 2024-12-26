@@ -1,0 +1,64 @@
+
+
+{% extends "stacked.html" %}
+{% load static %}
+
+{% block title %}
+    Password reset
+{% endblock title %}
+
+{% block content %}
+
+<div class="row justify-content-center align-items-center vh-100">
+    <div class="col-lg-6">
+        <div class="p-5">
+            <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4">Reset your password!</h1>
+            </div>
+            <form class="user" method="POST">
+                {% csrf_token %}
+                <div class="col-span-6">
+                    {% include 'utils/form_error_handler.html' %}
+                </div>
+
+                 <div class="form-group">
+                    <input type="password" name="new_password1" class="form-control form-control-user"
+                        id="exampleInputPassword" placeholder="New Password">
+                </div>
+
+                <div class="form-group">
+                    <input type="password" name="new_password2" class="form-control form-control-user"
+                        id="exampleInputPassword" placeholder="Confirm Password">
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-user btn-block">
+                    Reset password
+                </button>
+                <hr>
+            </form>
+            <hr>
+            <div class="text-center">
+                <a class="small" href="{% url 'sign-up' %}">Don't have an account?</a>
+            </div>
+            <div class="text-center">
+                <a class="small" href="{% url 'sign-in' %}">Remeber your Password? Login!</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+

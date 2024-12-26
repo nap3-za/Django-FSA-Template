@@ -1,0 +1,9 @@
+{% load crispy_forms_tags %}
+
+
+<form class="user" method="POST" hx-post="." hx-swap="outerHTML">
+    <div class="col-span-6">
+        {% include 'utils/form_error_handler.html' %}
+    </div>
+    {% crispy form %}
+</form>

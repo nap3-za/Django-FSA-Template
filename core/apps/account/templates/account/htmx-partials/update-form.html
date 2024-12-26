@@ -1,0 +1,30 @@
+{% load crispy_forms_tags %}
+
+<form class="user justify-content-center" method="POST" action="." hx-post="." hx-swap="outerHTML" hx-trigger="change delay:500ms, submit" enctype="multipart/form-data" >
+    {% csrf_token %}
+    
+    {% if message %}
+        <div class="alert alert-primary alert-dismissible fade show d-flex flex-row p-0" role="alert">
+            <button type="button" class="btn btn-close text-end d-flex flex-row flex-grow-1 align-items-center justify-content-between" data-dismiss="alert" aria-label="Close">
+                <p class="mb-0">{{ message }}</p>
+                <i class="fas fa-times fa-sm fa-fw"></i>
+            </button>
+        </div>
+    {% endif %}
+
+    <div class="col-span-6">
+        {% include 'utils/form_error_handler.html' %}
+    </div>
+
+    {% crispy form %}
+</form>
+
+
+
+
+
+{% if new_username %}
+    <script type="text/javascript">
+        window.location = "{% url 'account:details' subject_username=subject.username %}"
+    </script>
+{% endif %}

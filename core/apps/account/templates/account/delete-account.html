@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    Account details
+{% endblock title %}
+
+{% block content %}
+
+{% if request.user.is_authenticated %}
+    <div class="container-fluid">
+        <!-- Content Row -->
+        <div class="row justify-content-center align-items-center vh-100">
+            <div class="col-lg-6">
+                <div class="p-5">
+                    <div class="text-start mb-4">
+                        <h1 class="h4 text-gray-900">Account Deletion</h1>
+                        <h1 class="h6 text-gray-900">Enter your email and password then submit</h1>
+                    </div>
+                    <form class="user" method="POST">
+                        <div class="col-span-6">
+                            {% include 'utils/form_error_handler.html' %}
+                        </div>
+
+                        {% crispy form %}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% else %}
+<script type="text/javascript">
+    location = "{% url 'dashboard' %}"
+</script>
+{% endif %}
+
+
+{% endblock %}
