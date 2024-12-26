@@ -1,0 +1,62 @@
+from django.db import models
+from django.db.models import Q
+
+
+class ModelQuerySet(models.QuerySet):
+	
+	def search(self, query=None):
+		if query == None:
+			return self.none()
+		lookups += Q(Q(field__icontains=query))
+		return self.filter(lookups)
+
+class Model(models.Model):
+	
+	class ModelManager(models.Manager):
+
+		def create(self, field):
+			model = self.model(
+				field=field
+			)
+			model.save(using=self._db)
+			return model
+
+		def get_queryset(self):
+			return ModelQuerySet(self.model, using=self._db)
+
+		def search(self, query=None):
+			return self.get_queryset().search(query=query)
+
+
+	field 			 			= models.OneToOneField(
+		"core.app.AppModel",
+		related_name="model",
+		on_delete=models.SET_NULL,
+		null=True,
+		blank=True,
+	)
+
+	field 						= models.ForeignKey(
+		"core.app.AppModel",
+		related_name="models",
+		related_query_name="model",
+		on_delete=models.PROTECT,
+		null=True,
+		blank=False,
+	)
+
+	timestamp					= models.DateTimeField(auto_now_add=True)
+
+	objects = ModelManager()
+
+
+	def __str__(self):
+		return f"{self.id}"
+
+	@property 
+	def calculated_field(self):
+		return "calculated" + "field"
+
+	def update(self, **kwargs):
+		Model.objects.filter(id=self.id).update(**kwargs)
+		return Model.objects.get(id=self.id)

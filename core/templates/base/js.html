@@ -1,0 +1,12 @@
+{% load static %}
+
+
+<script src="{% static 'js/jquery.min.js' %}" preload></script>
+<script src="{% static 'js/jquery.slim.min.js' %}" preload></script>
+<script src="{% static 'js/jquery.easing.comp.js' %}" preload></script>
+<script src="{% static 'js/jquery.easing.min.js' %}" preload></script>
+
+<script src="{% static 'js/index.min.js' %}" preload></script>
+{% for js_file in vendor_js %}
+	<script src="{% static js_file %}" preload></script>
+{% endfor %}

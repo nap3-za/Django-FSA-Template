@@ -1,0 +1,35 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Nape Ntsoane">
+
+    <title>{{ BRAND_NAME|title }} | {% block title %}{% endblock title %}</title>
+
+    {% include 'base/css.html' %}
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}" />
+</head>
+
+<body>
+    {% include 'base/topbar.html' %}
+    
+	<div class="container-fluid">
+		<div class="row">
+	        {% include 'base/sidebar.html' %}
+	        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+	        	{% block content %}
+	        	{% endblock content %}
+	        	{% include 'base/footer.html' %}
+	        </main>
+	    </div>
+	</div>
+
+	{% include 'base/js.html' %}
+</body>

@@ -1,0 +1,75 @@
+from django import forms
+
+
+class ComplexForm(forms.ModelForm):
+	custom_field 					= forms.CharField(widget=forms.Select(choices=Choices), max_length=10, required=True)
+
+	def __init__(self, *args, **kwargs):
+		super(SignUpForm, self).__init__(*args, **kwargs)
+		self.helper = FormHelper()
+		# Labels as placeholders
+		# self.helper.layout = Layout()
+		# for field_name, field in self.fields.items():
+		# 	self.helper.layout.append(
+		# 		Field(field_name, placeholder=field.label)
+		# 	)
+		# self.helper.form_show_labels = False
+
+		# Horizontal form
+		# self.helper.form_class = "form-horizontal"
+		# self.helper.label_class = "col-lg-3"
+
+		# Form with adjacent fields
+		self.helper.layout = Layout(
+			Row(
+				Column("name", css_class="form-group col-sm-6"),
+				Column("surname", css_class="form-group col-sm-6"),
+			),
+			
+			"gender",
+			Row(
+				Column("email", css_class="form-group col-sm-6"),
+				Column("phone_number", css_class="form-group col-sm-6"),
+			),
+			"username",
+			Row(
+				Column("password1", css_class="form-group col-sm-6"),
+				Column("password2", css_class="form-group col-sm-6"),
+			),
+		)
+
+	class Meta:
+		model = complex_form_model 
+		fields = (
+			"model_field"
+		)
+
+	def clean_custom_field(self):
+		custom_field = self.cleaned_data["custom_field"]
+		# Necessary checks
+
+		return custom_field
+
+	def save(self, commit=True):
+		complex_form_model = complex_form_model.objects.create(
+			custom_field = custom_field
+		)
+		return complex_form_model
+
+
+class SimpleForm(forms.ModelForm):
+	class Meta:
+		model = simple_form_model
+		fields = (
+			"field"
+		)
+
+	def clean(self):
+		field = self.cleaned_data["field"]
+		# Necessary checks
+			
+	def save(self, commit=True):
+		simple_form_model = simple_form_model.objects.create(
+			field = field
+		)
+		return simple_form_model

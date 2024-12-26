@@ -1,0 +1,88 @@
+from django.shortcuts import render, get_object_or_404, redirect, reverse
+from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
+
+from .models import Model
+from .forms import (
+	ModelForm,
+	ModelCreateForm,
+)
+
+from account.models import Account
+
+
+# Create your views here.
+
+@login_required(login_url="sign-in")
+def simple_view(request, *args, **kwargs):
+	auth_user_account = get_object_or_404(Account, id=request.user.id)
+	context = {}
+	# Do some stuff
+	
+	return render(request, "app/simple.html", context)
+
+@login_required(login_url="sign-in")
+def list_view(request, *args, **kwargs):
+	auth_user_account = get_object_or_404(Account, id=request.user.id)
+	context = {}
+
+	objects = Model.objects.all()
+
+	p = Paginator(objects, 25)
+	page = request.GET.get('page')
+	objects_paginated = p.get_page(page)
+	context["objects"] = objects_paginated
+
+	return render(request, "app/list.html", context)
+
+@login_required(login_url="sign-in")
+def create_view(request, *args, **kwargs):
+	auth_user_account = get_object_or_404(Account, id=request.user.id)
+	context = {}
+
+	if request.method == "POST" and request.POST:
+		form = ModelCreateForm(request.POST)
+		if form.is_valid():
+			model = form.save()
+			context["successful"] = True
+			context["model_url"] = reverse("app:model", kwargs={"model_id":model.id})
+		else:
+			context["form"] = form
+		return render(request, "app/details.html", context)
+	else:
+		pass
+
+	return render(request, "app/create.html", context)
+
+@login_required(login_url="sign-in")
+def update_view(request, *args, **kwargs):
+	auth_user_account = get_object_or_404(Account, id=request.user.id)
+	context = {}
+
+	if request.method == "POST" and request.POST:
+		try:
+			instance = get_object_or_404(Instance, id=kwargs.get("instance_id"))
+		except:
+			return redirect("404")
+
+		form = ModelUpdateForm(request.POST, instance=instance)
+		if form.is_valid():
+			model = form.save()
+			context["successful"] = True
+			context["model_url"] = reverse("app:model", kwargs={"instance_id":instance.id})
+		else:
+			context['form'] = ModelUpdateForm(instance=instance)
+	else:
+		pass
+
+	return render(request, "app/update.html", context)
+
+@login_required(login_url="sign-in")
+def delete_view(request, *args, **kwargs):
+	auth_user_account = get_object_or_404(Account, id=request.user.id)
+	context = {}
+
+	objectt = get_object_or_404(Model, id=kwargs.get("model_id"))
+	objectt.delete()
+
+	return redirect("app:models")

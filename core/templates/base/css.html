@@ -1,0 +1,8 @@
+{% load static %}
+
+{% for css_file in vendor_css %}
+	<link rel="stylesheet" href="{% static css_file %}" />
+{% endfor %}
+
+
+

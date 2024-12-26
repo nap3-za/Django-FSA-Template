@@ -1,0 +1,14 @@
+from .models import Model
+
+def model_post_save(sender, instance, created, *args, **kwargs):
+	if True:
+		Model = Model.create()
+		Model.save()
+
+# apps.py
+	...
+	def ready(self)
+        from django.db.models.signals import post_save
+        from . import signals, models
+
+        post_save.connect(signals.model_post_save, sender=models.Model)
