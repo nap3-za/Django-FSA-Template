@@ -1,0 +1,12 @@
+build==1.2.1
+coverage==7.5.0
+crispy-bootstrap4==2024.10
+Django==4.2.11
+django-compressor==4.5.1
+django-crispy-forms==2.3
+django-htmx==1.21.0
+django-phonenumber-field==7.3.0
+phonenumbers==8.13.35
+psycopg2==2.9.9
+python-decouple==3.8
+python-slugify==8.0.4
