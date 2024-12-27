@@ -12,13 +12,5 @@ def vendor_files(request):
 		"vendor_css": css_files,
 	}
 
-from core.misc.field_choices import (
-	Genders,
-) 
-def form_values(request):
-	return {
-		"genders": Genders.choices
-	}
-
 def brand(request):
 	return settings.BRAND

@@ -86,7 +86,6 @@ TEMPLATES = [
                 # Project context processors
                 '{{ project_name }}.context_processors.vendor_files',
                 '{{ project_name }}.context_processors.brand',
-                '{{ project_name }}.context_processors.form_values',
             ],
         },
     },
