@@ -1,5 +1,8 @@
 # Django Backend - Open Registration Platforms
 
+## Demo
+[Here](https://blox-yoth.onrender.com/) : https://blox-yoth.onrender.com/
+
 ## Overview
 This is a Fullstack Django Project template designed with a Bootstrap-based frontend. It includes preset configurations for a scalable django project.
 
