@@ -1,4 +1,4 @@
-# Django Backend - Managed Content Sites
+# Django Backend - Open Registration Platforms
 
 ## Overview
 This is a Fullstack Django Project template designed with a Bootstrap-based frontend. It includes preset configurations for a scalable django project.
