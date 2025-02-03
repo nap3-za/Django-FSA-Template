@@ -1,14 +1,11 @@
-# Django REST API Backend - Managed Content Sites
+# Django Backend - Managed Content Sites
 
 ## Overview
-This is a Django REST Framework (DRF) template designed to integrate with the React frontend. It includes preset configurations for a scalable API.
+This is a Fullstack Django Project template designed with a Bootstrap-based frontend. It includes preset configurations for a scalable django project.
 
-It has a prebuilt authentication system with a custom user model (Account). All you need is a frontend application.
-
-All authentication is done via the Django Admin
+It has a prebuilt authentication system with a custom user model (Account). Just duplicate and you're off to the races
 
 ## Features
-- **Django REST Framework** for API development
 - **Modular Apps** under `core/apps`
 - **Media & Static File Handling**
 - **Environment Configuration** using `.env`
@@ -17,7 +14,7 @@ All authentication is done via the Django Admin
 
 ## Folder Structure
 ```
-drf_api/
+fsa_project_root/
 │── core/
 │   ├── apps/      # Modular Django apps
 │   	├── account/		# Custom authentication app
@@ -46,7 +43,7 @@ pip install -r requirements.txt
 
 # Create a project
 cd ..
-django-admin startproject <project_name> --template drf_api 
+django-admin startproject <project_name> --template fsa_project_root
 
 # Set Postgresql database details in .env file
 DATABASE_NAME=
